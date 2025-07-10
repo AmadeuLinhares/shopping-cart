@@ -1,0 +1,18 @@
+import { ProductNotFound } from "@/http/errors/products/products-error";
+import { CartRepository } from "@/http/repositories/interfaces/cart";
+
+export class FindCartService {
+  constructor(private cartRepository: CartRepository) {}
+
+  async execute(productId: string) {
+    const product = await this.cartRepository.findById(productId);
+
+    if (!product) {
+      throw new ProductNotFound();
+    }
+
+    return {
+      product,
+    };
+  }
+}

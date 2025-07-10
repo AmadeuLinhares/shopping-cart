@@ -15,7 +15,7 @@ let service: EditCartService;
 
 const MOCK_PRODUCTS: Product[] = [];
 
-describe("Cart/Add", () => {
+describe("Cart/Edit", () => {
   beforeEach(() => {
     for (let i = 0; i < 20; i++) {
       MOCK_PRODUCTS.push({
