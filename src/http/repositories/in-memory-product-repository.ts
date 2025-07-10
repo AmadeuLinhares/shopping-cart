@@ -1,9 +1,10 @@
 import { v7 as uuidv7 } from "uuid";
 
 import { Product, ProductsRepository } from "./interfaces/products";
+import { PRODUCTS_MOCK } from "@/mock/products";
 
 export class InMemoryProductRepository implements ProductsRepository {
-  public items: Product[] = [];
+  public items: Product[] = PRODUCTS_MOCK;
 
   async create(data: Omit<Product, "id">): Promise<Product> {
     const product: Product = {
