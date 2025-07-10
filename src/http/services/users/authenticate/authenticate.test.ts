@@ -16,6 +16,7 @@ describe("Authenticate Service", () => {
     await usersRepository.create({
       email: "mock@mock.com",
       password: await hash("123456", 6),
+      roles: ["USER"],
     });
 
     const { user } = await authRepository.execute({
@@ -41,6 +42,7 @@ describe("Authenticate Service", () => {
     await usersRepository.create({
       email: "mock@mock.com",
       password: await hash("123456", 6),
+      roles: ["USER"],
     });
 
     await expect(() =>

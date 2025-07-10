@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "vitest",
+    "type-check": "tsc --noEmit",
     "prepare": "husky",
     "check:deps": "tsx ./check-unused-deps.ts"
   },
