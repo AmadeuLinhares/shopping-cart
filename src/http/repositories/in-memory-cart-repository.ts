@@ -1,4 +1,9 @@
-import { Cart, CartRepository, EditCartProduct } from "./interfaces/cart";
+import {
+  Cart,
+  CartRepository,
+  EditCartProduct,
+  ProductsInCart,
+} from "./interfaces/cart";
 import { Product } from "./interfaces/products";
 
 export class InMemoryCartRepository implements CartRepository {
@@ -62,7 +67,7 @@ export class InMemoryCartRepository implements CartRepository {
     return this.items;
   }
 
-  async findById(productId: string): Promise<Product | null> {
+  async findById(productId: string): Promise<ProductsInCart | null> {
     const product = this.items.products.find(
       (current) => current.id === productId,
     );

@@ -17,5 +17,5 @@ export interface CartRepository {
   add(data: Product): Promise<Cart>;
   edit(data: EditCartProduct): Promise<Cart | null>;
   delete(productId: string): Promise<Cart | null>;
-  findById(productId: string): Promise<Product | null>;
+  findById(productId: string): Promise<ProductsInCart | null>;
 }
