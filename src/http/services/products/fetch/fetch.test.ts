@@ -33,6 +33,8 @@ describe("Products/Fetch", () => {
     repository = new InMemoryProductRepository();
     service = new FetchProductService(repository);
 
+    repository.items = [];
+
     MOCK_PRODUCTS.forEach((item) => {
       repository.items.push(item);
     });

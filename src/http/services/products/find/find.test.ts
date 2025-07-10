@@ -9,6 +9,7 @@ describe("Find Service", () => {
   beforeEach(() => {
     repository = new InMemoryProductRepository();
     findService = new FindProductService(repository);
+    repository.items = [];
   });
 
   it("Should find product correctly", async () => {
