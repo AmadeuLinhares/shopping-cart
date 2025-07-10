@@ -78,4 +78,8 @@ export class InMemoryCartRepository implements CartRepository {
 
     return product;
   }
+
+  async fetch(): Promise<Cart | null> {
+    return this.items;
+  }
 }

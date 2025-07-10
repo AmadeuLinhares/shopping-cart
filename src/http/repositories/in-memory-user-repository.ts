@@ -20,6 +20,7 @@ export class InMemoryUserRepository implements UsersRepository {
       id: uuidv7(),
       email: data.email,
       password: data.password,
+      roles: data.roles,
     };
 
     this.items.push(user);

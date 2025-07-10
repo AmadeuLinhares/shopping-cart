@@ -1,7 +1,10 @@
+export type Role = "VIP" | "USER";
+
 export interface User {
   email: string;
   id: string;
   password: string;
+  roles: Role[];
 }
 
 export interface UsersRepository {

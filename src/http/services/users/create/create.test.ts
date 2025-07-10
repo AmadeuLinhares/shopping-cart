@@ -12,6 +12,7 @@ describe("Users/Register", () => {
     const { user } = await registerServie.execute({
       email: "mock@mock.com",
       password: "123456",
+      roles: ["USER"],
     });
 
     const isPasswordCorrectlyHashed = await compare("123456", user.password);
@@ -26,12 +27,14 @@ describe("Users/Register", () => {
     await registerServie.execute({
       email: mockEmail,
       password: "123456",
+      roles: ["USER"],
     });
 
     await expect(() =>
       registerServie.execute({
         email: mockEmail,
         password: "123456",
+        roles: ["USER"],
       }),
     )
       .rejects.toBeInstanceOf(UserAlreadyExistError)
@@ -45,6 +48,7 @@ describe("Users/Register", () => {
     const { user } = await registerServie.execute({
       email: "mock@mock.com",
       password: "123456",
+      roles: ["USER"],
     });
 
     expect(user.id).toBeTruthy();
