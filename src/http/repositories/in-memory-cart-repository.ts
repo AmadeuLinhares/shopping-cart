@@ -21,8 +21,6 @@ export class InMemoryCartRepository implements CartRepository {
       return this.items;
     }
 
-    console.log("entrou aqui", productIndex);
-
     this.items.products[productIndex].amount =
       this.items.products[productIndex].amount + 1;
 

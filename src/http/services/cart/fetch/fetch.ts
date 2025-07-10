@@ -5,6 +5,7 @@ export class FetchCartService {
 
   async execute() {
     const cart = await this.cartRepository.fetch();
+
     return { cart };
   }
 }
