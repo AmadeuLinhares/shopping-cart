@@ -32,6 +32,8 @@ const options: depcheck.Options = {
     "eslint-config-next",
     "tailwindcss",
     "typescript",
+    "@tanstack/eslint-plugin-query",
+    "tw-animate-css",
   ],
 };
 
