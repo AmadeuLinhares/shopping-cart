@@ -30,6 +30,7 @@ export function ProductCard({
         <CardDescription>Stock: {stock}</CardDescription>
         <CardAction>
           <ShoppingCart
+            data-testid="add-to-cart-button"
             onClick={() => addCart({ id, name, price, stock }, false)}
             className="w-5 h-5 text-gray-700"
           />
@@ -44,6 +45,7 @@ export function ProductCard({
         <Button
           type="button"
           className="w-full"
+          data-testid="buy-product-button"
           onClick={() => addCart({ id, name, price, stock }, true)}
         >
           Buy
