@@ -53,6 +53,7 @@ export default function Login() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="flex justify-center items-center"
+      data-testid="login-form"
     >
       <Card className="w-full max-w-sm">
         <CardHeader>
@@ -69,6 +70,7 @@ export default function Login() {
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
+                data-testid="login-email-input"
                 id="email"
                 type="email"
                 placeholder="m@example.com"
@@ -78,16 +80,21 @@ export default function Login() {
             </div>
             <div className="grid gap-2">
               <Input
-                {...register("password")}
                 id="password"
                 type="password"
                 required
+                data-testid="password-email-input"
+                {...register("password")}
               />
             </div>
           </div>
         </CardContent>
         <CardFooter className="flex-col gap-2">
-          <Button type="submit" className="w-full">
+          <Button
+            type="submit"
+            className="w-full"
+            data-testid="submit-login-button"
+          >
             Login
           </Button>
         </CardFooter>

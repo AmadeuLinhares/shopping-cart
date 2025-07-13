@@ -68,6 +68,7 @@ export default function SignUp() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="flex justify-center items-center"
+      data-testid="signup-form"
     >
       <Card className="w-full max-w-sm">
         <CardHeader>
@@ -84,6 +85,7 @@ export default function SignUp() {
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
+                data-testid="signup-email-input"
                 id="email"
                 type="email"
                 placeholder="m@example.com"
@@ -96,7 +98,12 @@ export default function SignUp() {
               </div>
             </div>
             <div className="grid gap-2">
-              <Input id="password" type="password" {...register("password")} />
+              <Input
+                data-testid="signup-password-input"
+                id="password"
+                type="password"
+                {...register("password")}
+              />
               <div>
                 {errors.password && (
                   <span className="text-sm text-red-600">Field required</span>
@@ -117,8 +124,12 @@ export default function SignUp() {
                       <SelectValue placeholder="Select a role" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="USER">Regular user</SelectItem>
-                      <SelectItem value="VIP">VIP</SelectItem>
+                      <SelectItem data-testid="role-user" value="USER">
+                        Regular user
+                      </SelectItem>
+                      <SelectItem data-testid="role-vip" value="VIP">
+                        VIP
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 )}
@@ -135,7 +146,11 @@ export default function SignUp() {
           {isPending ? (
             <Spinner />
           ) : (
-            <Button type="submit" className="w-full">
+            <Button
+              type="submit"
+              data-testid="signup-submit-button"
+              className="w-full"
+            >
               Sign Up
             </Button>
           )}

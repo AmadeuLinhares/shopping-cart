@@ -7,7 +7,7 @@ import { EditCartProduct } from "@/http/repositories/interfaces/cart";
 import { useDeleteProductCart } from "@/mutations/useDeleteProductCart/useDeleteProductCart";
 import { useEditProductCart } from "@/mutations/useEditProductCart/useEditProductCart";
 import { useGetCart } from "@/queries/useGetCart/useGetCart";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 
 export default function Cart() {
   const { data, isLoading } = useGetCart();
@@ -28,6 +28,27 @@ export default function Cart() {
     [editMutate],
   );
 
+  const renderCart = useMemo(() => {
+    if (!data?.cart.products.length) {
+      return (
+        <div className="flex justify-center items-center">
+          <p className="text-secondary text-2xl">
+            No products added to cart 🥺{" "}
+          </p>
+        </div>
+      );
+    }
+
+    return data?.cart.products.map((current) => (
+      <CartCard
+        handleDeleteProduct={handleDeleteProduct}
+        handleEditProduct={handleEditProduct}
+        {...current}
+        key={current.id}
+      />
+    ));
+  }, [data?.cart.products, handleDeleteProduct, handleEditProduct]);
+
   if (isLoading) {
     return (
       <div className="flex gap-6 flex-wrap">
@@ -47,20 +68,14 @@ export default function Cart() {
       <div className="flex justify-center items-center">
         <div className="grid gap-x-6 grid-cols-[auto_auto]">
           {/* Products list */}
-          <div className="flex gap-6 flex-wrap">
-            {data?.cart.products.map((current) => (
-              <CartCard
-                handleDeleteProduct={handleDeleteProduct}
-                handleEditProduct={handleEditProduct}
-                {...current}
-                key={current.id}
-              />
-            ))}
-          </div>
+
+          <div className="flex gap-6 flex-wrap">{renderCart}</div>
           {/* Resume Price */}
-          <div>
-            <Invoice />
-          </div>
+          {!!data?.cart.products.length && (
+            <div>
+              <Invoice />
+            </div>
+          )}
         </div>
       </div>
     </div>
