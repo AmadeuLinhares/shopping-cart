@@ -1,9 +1,8 @@
-import { InMemoryUserRepository } from "@/http/repositories/in-memory-user-repository";
 import { FindService } from "../find/find";
+import { userRepo } from "@/lib/singletons/user-repo";
 
 export const makeFindUserService = () => {
-  const repository = new InMemoryUserRepository();
-  const service = new FindService(repository);
+  const service = new FindService(userRepo);
 
   return service;
 };

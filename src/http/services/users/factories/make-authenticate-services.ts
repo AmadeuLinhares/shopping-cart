@@ -1,9 +1,8 @@
-import { InMemoryUserRepository } from "@/http/repositories/in-memory-user-repository";
 import { AuthenticateService } from "../authenticate/authenticate";
+import { userRepo } from "@/lib/singletons/user-repo";
 
 export const makeAuthenticateService = () => {
-  const inMemoryUserRepository = new InMemoryUserRepository();
-  const authService = new AuthenticateService(inMemoryUserRepository);
+  const authService = new AuthenticateService(userRepo);
 
   return authService;
 };

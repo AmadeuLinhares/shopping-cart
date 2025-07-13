@@ -1,10 +1,13 @@
 import { v7 as uuidv7 } from "uuid";
 
-import { Product, ProductsRepository } from "./interfaces/products";
-import { PRODUCTS_MOCK } from "@/mock/products";
+import {
+  Product,
+  ProductsRepository,
+  StockProduct,
+} from "./interfaces/products";
 
 export class InMemoryProductRepository implements ProductsRepository {
-  public items: Product[] = PRODUCTS_MOCK;
+  public items: Product[] = [];
 
   async create(data: Omit<Product, "id">): Promise<Product> {
     const product: Product = {
@@ -29,5 +32,22 @@ export class InMemoryProductRepository implements ProductsRepository {
     }
 
     return product;
+  }
+
+  async changeStock(data: StockProduct): Promise<Product | null> {
+    const index = this.items.findIndex(
+      (current) => data.productId === current.id,
+    );
+
+    if (index < 0) {
+      return null;
+    }
+
+    this.items[index].stock =
+      data.action === "ADD"
+        ? this.items[index].stock + 1
+        : this.items[index].stock - 1;
+
+    return this.items[index];
   }
 }

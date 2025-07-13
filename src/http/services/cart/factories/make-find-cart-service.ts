@@ -1,9 +1,7 @@
-import { InMemoryCartRepository } from "@/http/repositories/in-memory-cart-repository";
 import { FindCartService } from "../find/find";
+import { cartRepo } from "@/lib/singletons/cart-repo";
 
 export const makeFindCartService = () => {
-  const cartRepository = new InMemoryCartRepository();
-
-  const service = new FindCartService(cartRepository);
+  const service = new FindCartService(cartRepo);
   return service;
 };

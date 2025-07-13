@@ -1,29 +1,41 @@
+import { cookies } from "next/headers";
 import { Avatar, AvatarImage } from "./avatar";
 import Link from "next/link";
+import { ShoppingCartIcon } from "lucide-react";
 
-export const Header = () => {
-  const isLogin = false;
-
+export const Header = async () => {
+  const cookieStore = await cookies();
+  const session = cookieStore.get("user-id");
   return (
     <div className="px-4 py-5 border-b border-b-secondary mb-10">
       <div className="flex justify-between items-center">
         <div>
-          <p className="text-blue-50">Shopping.com</p>
+          <Link href={"/"}>
+            <p className="text-blue-50">Shopping.com</p>
+          </Link>
         </div>
 
-        {isLogin ? (
+        <div className="flex gap-4">
           <div>
-            <Avatar>
-              <AvatarImage src={"https://i.pravatar.cc"} />
-            </Avatar>
-          </div>
-        ) : (
-          <div>
-            <Link href={"/login"} className="text-blue-50">
-              Login
+            <Link href={"/cart"}>
+              <ShoppingCartIcon className="text-secondary" />
             </Link>
           </div>
-        )}
+
+          {!!session ? (
+            <div>
+              <Avatar>
+                <AvatarImage src={"https://i.pravatar.cc"} />
+              </Avatar>
+            </div>
+          ) : (
+            <div>
+              <Link href={"/login"} className="text-blue-50">
+                Login
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

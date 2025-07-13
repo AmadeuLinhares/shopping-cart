@@ -25,6 +25,11 @@ export class CreateCartService {
 
     const productAlreadyAdded = await this.cartRepository.findById(data.id);
 
+    await this.productsRepository.changeStock({
+      action: "REMOVE",
+      productId: data.id,
+    });
+
     if (!productAlreadyAdded) {
       const cart = await this.cartRepository.add(data);
 

@@ -22,7 +22,7 @@ export class EditCartService {
       throw new ProductNotFound();
     }
 
-    if (stock.stock < 1) {
+    if (stock.stock < 1 && data.action === "ADD") {
       throw new NoStockAvailable();
     }
 
@@ -35,8 +35,18 @@ export class EditCartService {
     if (data.action === "REMOVE") {
       if (product.amount < 2) {
         throw new MinimumQuantityReached();
+      } else {
+        await this.productsRepository.changeStock({
+          action: "ADD",
+          productId: data.productId,
+        });
       }
     }
+
+    await this.productsRepository.changeStock({
+      action: "REMOVE",
+      productId: data.productId,
+    });
 
     const cart = await this.cartRepository.edit({
       action: data.action,

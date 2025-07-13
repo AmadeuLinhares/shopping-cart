@@ -1,9 +1,8 @@
-import { InMemoryProductRepository } from "@/http/repositories/in-memory-product-repository";
 import { FetchProductService } from "../fetch/fetch";
+import { productRepo } from "@/lib/singletons/product-repo";
 
 export const makeFetchProductService = () => {
-  const repository = new InMemoryProductRepository();
-  const service = new FetchProductService(repository);
+  const service = new FetchProductService(productRepo);
 
   return service;
 };
