@@ -103,7 +103,7 @@ describe("Resume/Fetch", () => {
     expect(discount).toEqual(65.5);
   });
 
-  it.only('Shold return discount "15%" when client is VIP and value its lowerst than "Get 3 for 2"', async () => {
+  it('Shold return discount "15%" when client is VIP and value its lowerst than "Get 3 for 2"', async () => {
     cartRepository.items.products = [
       {
         amount: 4,
