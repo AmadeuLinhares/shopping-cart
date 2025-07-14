@@ -9,8 +9,6 @@ export const PurchaseSummary = () => {
   const router = useRouter();
   const { data, isLoading, isError } = useGetInvoice();
 
-  console.log("isError", isError);
-
   if (isLoading) {
     return (
       <div className="grid gap-4">
