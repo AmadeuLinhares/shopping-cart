@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Product } from "@/http/repositories/interfaces/products";
+import { formatUSD } from "@/lib/utils";
 
 interface ProductCardProps extends Product {
   addCart(data: Product, redirectToCart: boolean): void;
@@ -38,7 +39,7 @@ export function ProductCard({
       </CardHeader>
       <CardContent>
         <div>
-          <Label>{price}</Label>
+          <Label>{formatUSD(price)}</Label>
         </div>
       </CardContent>
       <CardFooter className="flex-col gap-2">
